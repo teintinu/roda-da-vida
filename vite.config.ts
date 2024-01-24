@@ -7,5 +7,6 @@ export default defineConfig({
   build: {
     outDir: 'docs',
     emptyOutDir: true,
+    assetsDir: '/roda-da-vida/assets',
   },
 })
