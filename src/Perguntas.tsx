@@ -44,17 +44,12 @@ export const opcoes = [
 function PerguntasP({ q, qIdx, p, pIdx }: { q: Questionario; qIdx: number, p: string, pIdx: number }) {
   const [resposta, setResposta] = useRespostas(q, p);
   return (
-    <div className="px-2 pb-3 flex" title={opcoes[resposta || 0].text}>
-      <input
-        className="w-10 focus:border-blue border-b-2 border-b-solid font-mono pl-1"
-        autoFocus={qIdx===0&&pIdx===0}
-        type="number"
-        min={0}
-        max={3}
-        value={resposta}
-        onChange={(e) => setResposta(parseInt(e.target.value))}
-      />
-      <div>{p}</div>
+    <div className="px-2 pb-3 flex gap-1" title={opcoes[resposta || 0].text}>
+      <div className="w-8 text-center">{resposta}</div>
+      {opcoes.map(o=>(
+        <input type='radio' className="w-6 text-center" checked={resposta===o.val} onClick={()=>setResposta(o.val)} title={String(o.val)+': '+o.text} />
+      ))}
+      <div className="flex-1">{p}</div>
     </div>
   );
 }
